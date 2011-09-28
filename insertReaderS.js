@@ -8,9 +8,21 @@
  *
 */
 
-if ($('meta[name*="application-name"]').attr("content") != "Google Reader") {
-	var linksBar = $('#gbar a.gb3');
-	var cssClasses = linksBar.prev($('a')).attr('class');
-	var readerLink = $('#gbi a[href*="reader"]').attr('href');
-	linksBar.before('<a target="_blank" href="' + readerLink + '" class="' + cssClasses + '">Reader</a>');
+var found = false;
+
+// Find all elements with class 'gbzt' and look for a "*reader*" link
+$('a.gbzt').each(function(index) { if ($(this).attr('href').match('/reader/') != null) found = true; });
+
+// If not, then let's insert that element
+if (!found) {
+	// Find the correct reader link (should be in the submenu) and copy the whole tag
+	var ratag = $("a.gbmt:contains('Reader')")[0];
+	var readerText = $(ratag).text();
+	
+	// Change the class on the copied <a> tag and insert the correct Reader label (for internationalization)
+	$(ratag).removeClass('gbmt').addClass('gbzt').html('<span class="gbtb2"></span><span class="gbts">' + readerText + '</span></span>');
+	
+	// Find the li.gbto element, insert a copied <li><a> tag right before that element
+	$('#gbz li.gbt').last().before('<li class="gbt newlink"></li>');
+	$('.newlink').append(ratag);
 }

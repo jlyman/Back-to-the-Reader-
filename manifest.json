@@ -1,6 +1,6 @@
 {
   "name": "Back to the Reader!",
-  "version": "0.5",
+  "version": "1.0",
   "description": "Adds the link to Google Reader back in to the link bar on the top of all Apps pages.",
   "homepage_url": "http://www.joshualyman.com/back-to-the-reader-chrome-extension/",
   "icons": {
@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "matches": ["http://*.google.com/*", "https://*.google.com/*"],
-      "js": ["jquery-1.4.4.min.js", "insertReaderS.js"],
+      "js": ["jquery-1.6.4.min.js", "insertReaderS.js"],
       "run_at": "document_idle",
       "all_frames": true
     }
