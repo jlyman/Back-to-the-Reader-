@@ -26,10 +26,13 @@ function addReaderLink() {
 		// Find the li.gbto element, insert a copied <li><a> tag right before that element
 		$('#gbz li.gbt').last().before('<li class="gbt newlink"></li>');
 		$('.newlink').append(ratag);
+		
+		// Finally, Google has added a rule to add a hover CSS class via events. Override the style.
+		$("<style type='text/css'>.gbzt.gbmt-hvr{background-color:#4c4c4c !important;} </style>").appendTo("head");
 	}
 	
 	// Somehow, Google is refreshing the toolbar. Set itself to periodically recheck and re-add if necessary.
-	setTimeout("addReaderLink()", 180000);
+	setTimeout("addReaderLink()", 15000);
 }
 
 addReaderLink();
